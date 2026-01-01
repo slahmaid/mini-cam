@@ -2,336 +2,289 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#00BF6F">
-    <title>Prumysl - الحلول الأمنية الذكية</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Prumysl - المنتجات الأمنية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;500;700;900&display=swap" rel="stylesheet">
     <style>
         /* --- 1. Variables & Reset --- */
         :root {
-            --primary: #00BF6F;
-            --primary-dark: #009e5b;
-            --text-main: #1e293b;
-            --text-sub: #64748b;
-            --price-old: #94a3b8;
-            --badge-bg: #ef4444;
-            --bg-body: #f8fafc;
-            --bg-card: #ffffff;
-            --border-color: #e2e8f0;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.08);
-            --shadow-hover: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
-            --radius-md: 16px;
-            --radius-lg: 24px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --accent-color: #00D179; 
+            --text-primary: #111111;
+            --text-secondary: #86868b;
+            --bg-body: #F5F5F7; 
+            --bg-card: #FFFFFF;
+            --glass-bg: rgba(255, 255, 255, 0.8);
+            --glass-blur: blur(20px);
+            --radius: 24px; /* Increased radius for modern mobile look */
+            
+            /* Shadows optimized for depth */
+            --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.02);
+            --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
         }
 
-        * { box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
-        
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
         body {
             margin: 0;
             padding: 0;
             font-family: 'Cairo', sans-serif;
             background-color: var(--bg-body);
-            background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
-            background-size: 24px 24px;
-            color: var(--text-main);
+            color: var(--text-primary);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        a { text-decoration: none; color: inherit; }
 
-        /* --- 2. Header --- */
+        /* --- 2. Header (KEPT EXACTLY AS REQUESTED) --- */
         .site-header {
             display: flex;
             justify-content: center;
             align-items: center;
             width: 100%;
-            padding: 16px 0;
+            padding: 20px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            background-color: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(255,255,255,0.6);
-            box-shadow: var(--shadow-sm);
+            background-color: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
         }
 
         .site-header img {
             height: 45px;
             width: auto;
-            transition: transform 0.3s ease;
+            display: block;
+            opacity: 0.9;
         }
-        .site-header:hover img { transform: scale(1.05); }
 
-        /* --- 3. Product Grid --- */
+        /* --- 3. Container & Layout --- */
         .container {
-            max-width: 1350px;
+            max-width: 1300px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 40px 20px 80px 20px;
             flex: 1;
             width: 100%;
         }
 
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin: 0;
+            letter-spacing: -1px;
+            color: var(--text-primary);
+        }
+
         .product-grid {
             display: grid;
-            gap: 24px;
-            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         }
 
-        @media (min-width: 1024px) {
-            .product-grid { grid-template-columns: repeat(5, 1fr); }
-        }
-
-        /* --- 4. Product Card --- */
+        /* --- 4. Enhanced Card Design --- */
         .product-card {
             background: var(--bg-card);
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm); /* Default subtle shadow */
+            border: 1px solid rgba(0,0,0,0.03); 
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            transition: var(--transition);
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
             position: relative;
-            height: 100%;
+            cursor: pointer;
         }
 
-        .product-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--primary);
+        /* Desktop Hover */
+        @media (min-width: 769px) {
+            .product-card:hover {
+                transform: translateY(-8px);
+                box-shadow: var(--shadow-card);
+            }
+            .product-card:hover .card-image img {
+                transform: translate(-50%, -50%) scale(1.08);
+            }
+            .product-card:hover .btn-icon {
+                background-color: var(--text-primary);
+                color: #fff;
+            }
         }
 
-        /* Badges */
-        .badges-container {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .badge {
-            padding: 4px 10px;
-            border-radius: 6px;
-            color: #fff;
-            font-size: 0.75rem;
-            font-weight: 700;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .badge-sale { background-color: var(--badge-bg); }
-        .badge-tag { background-color: var(--text-main); }
-
-        .card-image-wrap {
+        /* Image Area */
+        .card-image {
             width: 100%;
-            padding-top: 100%;
+            padding-top: 100%; /* Square for perfect symmetry */
             position: relative;
-            background-color: #fff;
-            border-bottom: 1px solid #f1f5f9;
+            background-color: #f9f9f9;
             overflow: hidden;
         }
 
-        .card-image-wrap img {
+        .card-image img {
             position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%) scale(0.95);
-            max-width: 90%; max-height: 90%;
-            object-fit: contain;
-            transition: transform 0.5s ease;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
         }
 
-        .product-card:hover .card-image-wrap img {
-            transform: translate(-50%, -50%) scale(1.05);
-        }
-
+        /* Content Area */
         .card-content {
-            padding: 16px;
-            flex-grow: 1;
+            padding: 24px;
             display: flex;
             flex-direction: column;
-            text-align: right;
+            flex-grow: 1;
         }
 
         .product-title {
-            font-size: 1rem;
+            font-size: 1.15rem;
             font-weight: 700;
-            margin: 0 0 6px 0;
-            line-height: 1.4;
-            color: var(--text-main);
+            margin: 0 0 8px 0;
+            color: var(--text-primary);
         }
 
         .product-desc {
-            font-size: 0.8rem;
-            color: var(--text-sub);
-            margin-bottom: 12px;
-            flex-grow: 1;
-            line-height: 1.5;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-weight: 400;
         }
 
-        /* Pricing Section */
-        .price-wrapper {
-            margin-top: auto;
-            margin-bottom: 12px;
-        }
-
-        .price-row {
+        /* Price & Button */
+        .card-actions {
             display: flex;
-            align-items: baseline;
-            gap: 8px;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+            padding-top: 16px;
+            border-top: 1px solid rgba(0,0,0,0.04);
         }
 
-        .current-price {
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: var(--primary);
+        .product-price {
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: var(--text-primary);
         }
         
-        .current-price span { font-size: 0.8rem; font-weight: 700; }
-
-        .old-price {
-            font-size: 0.9rem;
-            text-decoration: line-through;
-            color: var(--price-old);
-            font-weight: 500;
+        .currency {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-right: 4px;
+            vertical-align: top;
         }
 
-        .btn-details {
-            width: 100%;
-            padding: 10px;
-            background-color: var(--text-main);
-            color: #fff;
-            border-radius: 10px;
-            font-weight: 700;
+        .btn-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: #f1f1f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            color: var(--text-primary);
+        }
+
+        /* --- 5. Footer --- */
+        .site-footer {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #fff;
+            color: var(--text-secondary);
             font-size: 0.9rem;
-            border: none;
-            cursor: pointer;
-            transition: var(--transition);
+            margin-top: auto;
+        }
+
+        .footer-links {
             display: flex;
             justify-content: center;
-            align-items: center;
-            gap: 8px;
+            gap: 30px;
+            margin-bottom: 25px;
         }
 
-        .btn-details:hover {
-            background-color: black;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        .footer-links a {
+            font-weight: 600;
+            color: var(--text-primary);
+            position: relative;
+            padding-bottom: 2px;
         }
 
-        /* --- 5. Modal & Gallery --- */
-        .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(15, 23, 42, 0.7); backdrop-filter: blur(5px);
-            z-index: 2000; justify-content: center; align-items: center; padding: 20px;
-            opacity: 0; transition: opacity 0.3s ease;
-        }
-        .modal-overlay.active { opacity: 1; }
-
-        .modal-content {
-            background: #fff; width: 100%; max-width: 950px; max-height: 90vh;
-            border-radius: var(--radius-lg); overflow-y: auto; position: relative;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
-            transform: scale(0.96); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        .modal-overlay.active .modal-content { transform: scale(1); }
-
-        .close-modal {
-            position: absolute; top: 20px; left: 20px;
-            background: rgba(255,255,255,0.9); color: var(--text-main);
-            width: 40px; height: 40px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer; font-size: 18px; z-index: 10; border: 1px solid var(--border-color);
-            transition: var(--transition);
-        }
-        .close-modal:hover { background: #ef4444; color: #fff; transform: rotate(90deg); border-color: #ef4444; }
-
-        .gallery-container { background: #fff; padding: 30px; border-bottom: 1px solid var(--border-color); }
-        .main-image-wrapper { height: 350px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; }
-        .modal-product-image { max-width: 100%; max-height: 100%; object-fit: contain; transition: opacity 0.2s; }
-        
-        .thumbnail-strip { display: flex; gap: 10px; justify-content: center; overflow-x: auto; padding: 4px; }
-        .thumb-btn { width: 65px; height: 65px; border: 2px solid transparent; border-radius: 10px; background: #f8fafc; cursor: pointer; transition: var(--transition); }
-        .thumb-btn.active, .thumb-btn:hover { border-color: var(--primary); background: #fff; box-shadow: 0 4px 6px rgba(0,191,111,0.15); }
-        .thumb-btn img { width: 100%; height: 100%; object-fit: contain; }
-
-        /* Order Form & Trust Badges */
-        .order-section { padding: 30px; background: #f8fafc; }
-        .order-box {
-            background: #fff; border: 1px solid var(--border-color); border-radius: var(--radius-lg);
-            padding: 30px; position: relative; overflow: hidden; box-shadow: var(--shadow-sm);
-        }
-        .order-box::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: linear-gradient(90deg, var(--primary), #34d399); }
-        
-        /* New Order Header Styling */
-        .order-header-info { text-align: center; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px dashed #e2e8f0; }
-        .order-product-name { font-size: 1.1rem; font-weight: 700; color: var(--text-main); margin-bottom: 5px; }
-        .order-price-row { display: flex; justify-content: center; align-items: center; gap: 10px; font-size: 1.4rem; font-weight: 800; color: var(--primary); }
-        .order-price-old { font-size: 1rem; color: var(--price-old); text-decoration: line-through; font-weight: 500; }
-        
-        .trust-badges {
-            display: flex; justify-content: center; gap: 20px; margin-bottom: 25px; flex-wrap: wrap;
-        }
-        .trust-item {
-            display: flex; flex-direction: column; align-items: center; font-size: 0.75rem; color: var(--text-sub); gap: 5px;
-        }
-        .trust-item i { font-size: 1.2rem; color: var(--primary); background: #f0fdf4; padding: 10px; border-radius: 50%; }
-
-        .form-grid { display: grid; gap: 15px; }
-        .form-input {
-            width: 100%; padding: 14px; border: 2px solid var(--border-color); border-radius: 10px;
-            font-family: inherit; font-size: 1rem; transition: var(--transition);
-        }
-        .form-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(0,191,111,0.1); }
-        
-        .btn-submit {
-            width: 100%; padding: 15px; background: var(--primary); color: #fff; border: none;
-            border-radius: 10px; font-size: 1.1rem; font-weight: 700; cursor: pointer;
-            transition: var(--transition); margin-top: 15px; display: flex; justify-content: center; gap: 10px;
-            animation: pulse-animation 2s infinite;
-        }
-        .btn-submit:hover { background: var(--primary-dark); transform: translateY(-2px); animation: none; }
-
-        @keyframes pulse-animation {
-            0% { box-shadow: 0 0 0 0 rgba(0, 191, 111, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(0, 191, 111, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(0, 191, 111, 0); }
-        }
-
-        .success-message { text-align: center; padding: 40px 20px; display: none; animation: slideUp 0.4s ease; }
-        .success-icon { width: 70px; height: 70px; background: #dcfce7; color: #16a34a; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; margin: 0 auto 15px; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        .site-footer { background: #fff; border-top: 1px solid var(--border-color); padding: 40px 20px; text-align: center; margin-top: 40px; }
-        .footer-links a { margin: 0 10px; text-decoration: none; color: var(--text-main); font-weight: 600; }
-
+        /* --- MOBILE ENHANCEMENTS (Max-width 768px) --- */
         @media (max-width: 768px) {
-            .container { padding: 20px 10px; }
-            .product-grid { gap: 12px; }
-            .card-content { padding: 12px; }
-            .product-title { font-size: 0.9rem; }
-            .product-desc { display: none; }
-            .modal-content { height: 100%; border-radius: 0; }
-            .gallery-container { padding: 15px; }
-            .main-image-wrapper { height: 250px; }
-            .trust-badges { gap: 15px; }
+            
+            /* Tighter layout */
+            .container { 
+                padding: 30px 16px 60px 16px; 
+            }
+            
+            .section-header h1 {
+                font-size: 1.75rem;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr; /* Single column for immersive feed */
+                gap: 24px;
+            }
+
+            /* Card Mobile State */
+            .product-card {
+                /* Permanent shadow on mobile so it pops without hover */
+                box-shadow: var(--shadow-card); 
+                border: none;
+            }
+
+            /* Native App "Press" Effect */
+            .product-card:active {
+                transform: scale(0.98);
+                transition: transform 0.1s;
+            }
+
+            /* Image slightly shorter on mobile to show more content */
+            .card-image {
+                padding-top: 90%; 
+            }
+
+            .card-content {
+                padding: 20px;
+            }
+
+            .product-title {
+                font-size: 1.2rem; /* Larger for readability */
+            }
+
+            .product-desc {
+                font-size: 0.9rem;
+                display: -webkit-box;
+                -webkit-line-clamp: 2; /* Limit to 2 lines */
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+
+            /* Button acts as a visual cue, larger tap target */
+            .btn-icon {
+                background-color: var(--text-primary); /* Fill button on mobile by default */
+                color: #fff;
+            }
+
+            /* Footer Mobile Optimization */
+            .footer-links {
+                display: grid;
+                grid-template-columns: 1fr 1fr; /* 2x2 Grid for easy tapping */
+                gap: 20px;
+                max-width: 300px;
+                margin: 0 auto 30px auto;
+            }
         }
     </style>
 </head>
@@ -342,7 +295,94 @@
     </header>
 
     <div class="container">
-        <div class="product-grid" id="productGrid"></div>
+        
+        <header class="section-header">
+            <h1>أحدث الحلول الأمنية</h1>
+        </header>
+
+        <div class="product-grid">
+
+            <div class="product-card">
+                <div class="card-image">
+                    <img src="img/Prumysl Falcon 36X.jpg" alt="Prumysl Falcon 36X">
+                </div>
+                <div class="card-content">
+                    <h3 class="product-title">Prumysl Falcon 36X</h3>
+                    <p class="product-desc">أقوى كاميرا للمراقبة بدقة 24 ميغابكسل وزووم بصري 36X وبطارية ضخمة.</p>
+                    <div class="card-actions">
+                        <div class="product-price">2800 <span class="currency">DH</span></div>
+                        <a href="#" class="btn-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="card-image">
+                    <img src="img/Prumysl Vision 6K Pro.jpg" alt="Prumysl Vision 6K Pro">
+                </div>
+                <div class="card-content">
+                    <h3 class="product-title">Prumysl Vision 6K Pro</h3>
+                    <p class="product-desc">نظام 3 عدسات بدقة 6K وتغطية شاملة 360 درجة بدون نقاط عمياء.</p>
+                    <div class="card-actions">
+                        <div class="product-price">1100 <span class="currency">DH</span></div>
+                        <a href="#" class="btn-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="card-image">
+                    <img src="img/Prumysl Omni-Guard 360°.jpg" alt="Prumysl Omni-Guard 360°">
+                </div>
+                <div class="card-content">
+                    <h3 class="product-title">Prumysl Omni-Guard</h3>
+                    <p class="product-desc">كاميرا شمسية 4G، ثلاث شاشات حية ومراقبة PTZ ذكية.</p>
+                    <div class="card-actions">
+                        <div class="product-price">1200 <span class="currency">DH</span></div>
+                        <a href="#" class="btn-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="card-image">
+                    <img src="img/Prumysl Duo 18W.jpg" alt="Prumysl Duo 18W">
+                </div>
+                <div class="card-content">
+                    <h3 class="product-title">Prumysl Duo 18W</h3>
+                    <p class="product-desc">لوحين 18W، متوفرة بنسخة WiFi أو 4G مع استهلاك منخفض.</p>
+                    <div class="card-actions">
+                        <div class="product-price">899 <span class="currency">DH</span></div>
+                        <a href="#" class="btn-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="card-image">
+                    <img src="img/Prumysl Euro-Shield.jpg" alt="Prumysl Euro-Shield">
+                </div>
+                <div class="card-content">
+                    <h3 class="product-title">Prumysl Euro-Shield</h3>
+                    <p class="product-desc">نسخة أوروبية متطورة مصممة خصيصاً للضيعات الزراعية.</p>
+                    <div class="card-actions">
+                        <div class="product-price">699 <span class="currency">DH</span></div>
+                        <a href="#" class="btn-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <footer class="site-footer">
@@ -352,250 +392,8 @@
             <a href="#">من نحن</a>
             <a href="#">اتصل بنا</a>
         </div>
-        <div style="margin-top:20px; color:var(--text-sub); font-size:0.9rem;">جميع الحقوق محفوظة © 2025 Prumysl</div>
+        <p>جميع الحقوق محفوظة © 2025 Prumysl</p>
     </footer>
-
-    <div class="modal-overlay" id="productModal">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
-            
-            <div class="gallery-container">
-                <div class="main-image-wrapper">
-                    <img src="" alt="Product Detail" class="modal-product-image" id="modalMainImg">
-                </div>
-                <div class="thumbnail-strip" id="modalThumbStrip"></div>
-            </div>
-
-            <div class="modal-body" id="modalBody"></div>
-
-            <div class="order-section">
-                <div class="order-box">
-                    <div id="formContent">
-                        
-                        <div class="order-header-info">
-                            <div class="order-product-name" id="modalProductName">اسم المنتج</div>
-                            <div class="order-price-row">
-                                <span id="modalCurrentPrice">0 DH</span>
-                                <span class="order-price-old" id="modalOldPrice">0 DH</span>
-                            </div>
-                        </div>
-
-                        <div class="trust-badges">
-                            <div class="trust-item"><i class="fa-solid fa-truck-fast"></i><span>توصيل مجاني</span></div>
-                            <div class="trust-item"><i class="fa-solid fa-hand-holding-dollar"></i><span>الدفع عند الاستلام</span></div>
-                            <div class="trust-item"><i class="fa-solid fa-shield-halved"></i><span>ضمان سنة</span></div>
-                        </div>
-
-                        <form id="orderForm" onsubmit="handleOrderSubmit(event)">
-                            <div class="form-grid">
-                                <div class="form-group">
-                                    <label>الاسم الكامل</label>
-                                    <input type="text" class="form-input" placeholder="أدخل اسمك الكريم" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>المدينة</label>
-                                    <input type="text" class="form-input" placeholder="مثال: الدار البيضاء" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>رقم الهاتف</label>
-                                    <input type="tel" class="form-input" placeholder="06XXXXXXXX" required>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn-submit">
-                                اضغط هنا للطلب الآن <i class="fa-solid fa-cart-shopping"></i>
-                            </button>
-                        </form>
-                    </div>
-
-                    <div id="successMessage" class="success-message">
-                        <div class="success-icon"><i class="fa-solid fa-check"></i></div>
-                        <h3 style="color:var(--text-main); margin-bottom:10px;">تم استلام طلبك بنجاح!</h3>
-                        <p style="color:var(--text-sub);">شكراً لك. سيقوم فريقنا بالاتصال بك قريباً لتأكيد الطلب.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        /* --- 1. Consolidated Product Data --- */
-        const products = {
-            'falcon': {
-                title: 'Prumysl Falcon 36X',
-                desc: 'أقوى كاميرا للمراقبة: 24 ميغابكسل، زووم بصري 36X وبطارية 12000mAh.',
-                price: 2800,
-                oldPrice: 4900,
-                tag: 'الأكثر مبيعاً',
-                images: [
-                    'img/Prumysl Falcon 36X/Prumysl Falcon 36X-main.jpg',
-                    'img/Prumysl Falcon 36X/Prumysl Falcon 36X-thumb-1.jpg',
-                    'img/Prumysl Falcon 36X/Prumysl Falcon 36X-thumb-2.jpg'
-                ],
-                html: `<style>.pru-wrapper{font-family:'Cairo',sans-serif;direction:rtl;max-width:850px;margin:20px auto;background-color:#fff;color:#334155;border:1px solid #e2e8f0;border-radius:20px;box-shadow:0 20px 50px -10px rgba(15,23,42,0.1);overflow:hidden;text-align:right}.pru-header{background:radial-gradient(circle at top right,#111827,#0d9488);padding:40px 30px;text-align:center;color:#fff;position:relative;overflow:hidden}.pru-header::before{content:'';position:absolute;top:-60px;left:-60px;width:220px;height:220px;background:rgba(45,212,191,0.2);border-radius:50%;filter:blur(50px)}.pru-badge{background:rgba(255,255,255,0.15);backdrop-filter:blur(5px);border:1px solid rgba(255,255,255,0.2);color:#ccfbf1;font-size:13px;font-weight:700;text-transform:uppercase;padding:6px 18px;border-radius:50px;display:inline-block;margin-bottom:12px}.pru-title{font-size:38px;font-weight:900;margin:0;line-height:1.2;background:linear-gradient(to bottom,#fff,#f0fdfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.pru-subtitle{font-size:18px;font-weight:400;color:#cbd5e1;margin-top:8px}.pru-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;padding:20px 30px;margin-top:-25px;position:relative;z-index:10}.pru-card{background:#fff;padding:15px 10px;border-radius:16px;text-align:center;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1);border:1px solid #f1f5f9;transition:transform .2s ease}.pru-icon-circle{width:50px;height:50px;background-color:#f0fdfa;color:#0d9488;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;margin:0 auto 10px auto}.pru-card h4{margin:0;font-size:15px;font-weight:800;color:#1e293b}.pru-card span{font-size:12px;color:#64748b;font-weight:600;display:block;margin-top:2px}.pru-content{padding:40px 35px;line-height:1.8;font-size:17px;color:#475569}.pru-highlight{background-color:#f0fdfa;color:#0f766e;padding:2px 6px;border-radius:4px;font-weight:700}.pru-features-box{background-color:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:25px;margin-top:25px}.pru-feature-item{display:flex;align-items:flex-start;margin-bottom:18px}.pru-feature-item:last-child{margin-bottom:0}.pru-check{color:#0d9488;font-size:18px;margin-left:12px;margin-top:4px;flex-shrink:0}.pru-feature-title{font-weight:800;color:#1e293b;display:block;margin-bottom:4px;font-size:16px}.pru-feature-desc{font-size:15px;color:#64748b;line-height:1.6}@media (max-width:768px){.pru-wrapper{margin:10px}.pru-header{padding:30px 15px 40px 15px}.pru-title{font-size:26px}.pru-subtitle{font-size:15px}.pru-grid{grid-template-columns:1fr 1fr;gap:10px;padding:0 15px;margin-top:-30px}.pru-card{padding:12px 5px}.pru-icon-circle{width:38px;height:38px;font-size:16px;margin-bottom:8px}.pru-card h4{font-size:13px}.pru-card span{font-size:11px}.pru-content{padding:25px 20px;font-size:16px}.pru-features-box{padding:20px 15px}}</style><div class="pru-wrapper"><div class="pru-header"><span class="pru-badge"><i class="fa-solid fa-eye"></i> قوة التكبير البصري</span><h2 class="pru-title">Prumysl Falcon 36X</h2><div class="pru-subtitle">24 ميغابكسيل • زووم 36X • طاقة 20W</div></div><div class="pru-grid"><div class="pru-card"><div class="pru-icon-circle"><i class="fa-solid fa-magnifying-glass-plus"></i></div><h4>زووم بصري</h4><span>قوة 36X</span></div><div class="pru-card"><div class="pru-icon-circle"><i class="fa-solid fa-camera"></i></div><h4>Ultra HD</h4><span>24 ميغابكسيل</span></div><div class="pru-card"><div class="pru-icon-circle"><i class="fa-solid fa-bolt"></i></div><h4>طاقة جبارة</h4><span>20W + 12000mAh</span></div><div class="pru-card"><div class="pru-icon-circle"><i class="fa-solid fa-microchip"></i></div><h4>ذكاء اصطناعي</h4><span>تتبع الحركة AI</span></div></div><div class="pru-content"><p>شاهد أدق التفاصيل من مسافات بعيدة جداً مع <strong>Prumysl Falcon 36X</strong>. بفضل عدساتها المزدوجة وقدرة <span class="pru-highlight">الزووم البصري 36X</span>، يمكنك قراءة لوحات السيارات والتعرف على الوجوه بوضوح تام، مما يجعلها الحارس الأمثل للضيعات والمساحات الشاسعة.</p><div class="pru-features-box"><div class="pru-feature-item"><i class="fa-solid fa-circle-check pru-check"></i><div><span class="pru-feature-title">زووم بصري حقيقي 36X (Optical Zoom)</span><span class="pru-feature-desc">على عكس الزووم الرقمي العادي، هذا الزووم يقرب الصورة حقيقة دون فقدان الجودة، لرؤية التفاصيل البعيدة بوضوح 24 ميغابكسيل.</span></div></div><div class="pru-feature-item"><i class="fa-solid fa-circle-check pru-check"></i><div><span class="pru-feature-title">نظام طاقة مزدوج (20W Total)</span><span class="pru-feature-desc">مزودة بلوحين شمسيين بقوة إجمالية 20 واط وبطارية ضخمة <span class="pru-highlight">12000mAh</span> لضمان تشغيل مستمر في أصعب الظروف.</span></div></div><div class="pru-feature-item"><i class="fa-solid fa-circle-check pru-check"></i><div><span class="pru-feature-title">متوفرة بنسختين (حسب اختيارك)</span><span class="pru-feature-desc">• <strong>نسخة 4G:</strong> تعمل بشريحة SIM فقط (بدون واي فاي).<br>• <strong>نسخة WiFi:</strong> تعمل بشبكة WiFi 2.4GHz + بلوتوث.</span></div></div><div class="pru-feature-item"><i class="fa-solid fa-circle-check pru-check"></i><div><span class="pru-feature-title">حماية ذكية وتتبع AI</span><span class="pru-feature-desc">تكتشف الحركة وتتتبع الأشخاص تلقائياً، مع إرسال تنبيهات فورية لهاتفك لحماية منزلك 24/24.</span></div></div></div><p style="margin-top: 25px; text-align: center; font-size: 14px; color: #94a3b8;"><em>اختر النسخة التي تناسب مكانك (شريحة 4G أو واي فاي) عند الطلب.</em></p></div></div>`
-            },
-            'vision': {
-                title: 'Prumysl Vision 6K Pro',
-                desc: 'كاميرا 3 عدسات 15MP 6K، زووم 10X، وتغطية 360 درجة.',
-                price: 1100,
-                oldPrice: 1800,
-                tag: 'جديد',
-                images: [
-                    'img/Prumysl Vision 6K Pro/Prumysl Vision 6K Pro-main.jpg',
-                    'img/Prumysl Vision 6K Pro/Prumysl Vision 6K Pro-thumb-1.jpg',
-                    'img/Prumysl Vision 6K Pro/Prumysl Vision 6K Pro-thumb-2.jpg'
-                ],
-                html: `<style>.pru-wrapper{font-family:'Cairo',sans-serif;direction:rtl;max-width:850px;margin:20px auto;background-color:#fff;color:#334155;border:1px solid #e2e8f0;border-radius:20px;box-shadow:0 20px 50px -10px rgba(15,23,42,0.1);overflow:hidden;text-align:right}.pru-header{background:radial-gradient(circle at top right,#0f172a,#1e293b);padding:40px 30px;text-align:center;color:#fff;position:relative;overflow:hidden}.pru-header::before{content:'';position:absolute;top:-50px;left:-50px;width:200px;height:200px;background:rgba(37,99,235,0.15);border-radius:50%;filter:blur(40px)}.pru-badge{background:rgba(255,255,255,0.15);backdrop-filter:blur(5px);border:1px solid rgba(255,255,255,0.2);color:#60a5fa;font-size:13px;font-weight:700;text-transform:uppercase;padding:6px 18px;border-radius:50px;display:inline-block;margin-bottom:12px}.pru-title{font-size:38px;font-weight:900;margin:0;line-height:1.2;background:linear-gradient(to bottom,#fff,#e2e8f0);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.pru-subtitle{font-size:18px;font-weight:400;color:#94a3b8;margin-top:8px}.pru-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;padding:20px 30px;margin-top:-25px;position:relative;z-index:10}.pru-card{background:#fff;padding:15px 10px;border-radius:16px;text-align:center;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1);border:1px solid #f1f5f9;transition:transform .2s ease}.pru-icon-circle{width:50px;height:50px;background-color:#eff6ff;color:#2563eb;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;margin:0 auto 10px auto}.pru-card h4{margin:0;font-size:15px;font-weight:800;color:#1e293b}.pru-card span{font-size:12px;color:#64748b;font-weight:600;display:block;margin-top:2px}.pru-content{padding:40px 35px;line-height:1.8;font-size:17px;color:#475569}.pru-highlight{background-color:#eff6ff;color:#1d4ed8;padding:2px 6px;border-radius:4px;font-weight:700}.pru-features-box{background-color:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:25px;margin-top:25px}.pru-feature-item{display:flex;align-items:flex-start;margin-bottom:18px}.pru-feature-item:last-child{margin-bottom:0}.pru-check{color:#2563eb;font-size:18px;margin-left:12px;margin-top:4px;flex-shrink:0}.pru-feature-title{font-weight:800;color:#1e293b;display:block;margin-bottom:4px;font-size:16px}.pru-feature-desc{font-size:15px;color:#64748b;line-height:1.6}@media (max-width:768px){.pru-wrapper{margin:10px}.pru-header{padding:30px 15px 40px 15px}.pru-title{font-size:26px}.pru-subtitle{font-size:15px}.pru-grid{grid-template-columns:1fr 1fr;gap:10px;padding:0 15px;margin-top:-30px}.pru-card{padding:12px 5px}.pru-icon-circle{width:38px;height:38px;font-size:16px;margin-bottom:8px}.pru-card h4{font-size:13px}.pru-card span{font-size:11px}.pru-content{padding:25px 20px;font-size:16px}.pru-features-box{padding:20px 15px}}</style><div class="pru-wrapper"><div class="pru-header"><span class="pru-badge"><i class="fa-solid fa-crown"></i> الإصدار الاحترافي</span><h2 class="pru-title">Prumysl Vision 6K Pro</h2><div class="pru-subtitle">15 ميغابكسيل • 3 عدسات • طاقة قصوى</div></div><div class="pru-grid"><div class="pru-card"><div class="pru-icon-circle"><i class="fa-solid fa-eye"></i></div><h4>دقة 6K</h4><span>15 ميغابكسيل</span></div><div class="pru-card"><div class="pru-icon-circle"><i class="fa-solid fa-layer-group"></i></div><h4>3 شاشات</h4><span>عرض في وقت واحد</span></div><div class="pru-card"><div class="pru-icon-circle"><i class="fa-solid fa-bolt"></i></div><h4>طاقة 16W</h4><span>شحن شمسي مضاعف</span></div><div class="pru-card"><div class="pru-icon-circle"><i class="fa-solid fa-magnifying-glass-plus"></i></div><h4>زووم 10X</h4><span>تقريب رقمي</span></div></div><div class="pru-content"><p>انتقل بمستوى الأمان إلى القمة مع <strong>Prumysl Vision 6K Pro</strong>. كاميرا المراقبة الشمسية الأكثر تطوراً بـ 3 عدسات مستقلة تعرض لك <span class="pru-highlight">3 شاشات مختلفة في آن واحد</span> على هاتفك، لتغطية 360° حقيقية بدون أي نقاط عمياء.</p><div class="pru-features-box"><div class="pru-feature-item"><i class="fa-solid fa-circle-check pru-check"></i><div><span class="pru-feature-title">دقة خيالية 15MP 6K</span><span class="pru-feature-desc">ثلاثة مستشعرات (Capteurs) توفر صورة فائقة الوضوح بدقة إجمالية 15 ميغابكسيل.</span></div></div><div class="pru-feature-item"><i class="fa-solid fa-circle-check pru-check"></i><div><span class="pru-feature-title">استقلالية تامة (4G + Solar)</span><span class="pru-feature-desc">تعمل بشريحة 4G فقط (بدون واي فاي). مزودة ببطارية <strong>8000mAh</strong> ولوحين شمسيين بقوة إجمالية <span class="pru-highlight">16 واط</span> للاستعمال الطويل.</span></div></div><div class="pru-feature-item"><i class="fa-solid fa-circle-check pru-check"></i><div><span class="pru-feature-title">زووم 10X ورؤية ليلية</span><span class="pru-feature-desc">قرب الصورة حتى 10 مرات رقمياً (Digital Zoom) مع رؤية ليلية واضحة لتأمين الممتلكات البعيدة.</span></div></div><div class="pru-feature-item"><i class="fa-solid fa-circle-check pru-check"></i><div><span class="pru-feature-title">تطبيق V380 Pro الاحترافي</span><span class="pru-feature-desc">تحكم كامل في العدسات الثلاث، راجع التسجيلات، وتلقى التنبيهات عبر تطبيق V380 Pro الموثوق.</span></div></div></div><p style="margin-top: 25px; text-align: center; font-size: 14px; color: #94a3b8;"><em>الحل النهائي للضيعات الكبيرة والمساحات المفتوحة التي تتطلب تغطية شاملة.</em></p></div></div>`
-            },
-            'omni': {
-                title: 'Prumysl Omni-Guard 360°',
-                desc: 'كاميرا شمسية 4G ثلاثية العدسات PTZ، 3 شاشات حية.',
-                price: 1200,
-                oldPrice: 2100,
-                tag: 'تغطية شاملة',
-                images: [
-                    'img/Prumysl Omni-Guard 360°/Prumysl Omni-Guard 360°-main.jpg',
-                    'img/Prumysl Omni-Guard 360°/Prumysl Omni-Guard 360°-thumb-2.jpg'
-                ],
-                html: `<style>.pru-wrapper{font-family:'Cairo',sans-serif;direction:rtl;max-width:850px;margin:20px auto;background-color:#fff;color:#334155;border:1px solid #e2e8f0;border-radius:20px;box-shadow:0 20px 50px -10px rgba(15,23,42,0.1);overflow:hidden;text-align:right}.pru-header{background:radial-gradient(circle at top right,#312e81,#4f46e5);padding:40px 30px;text-align:center;color:#fff;position:relative;overflow:hidden}.pru-header::before{content:'';position:absolute;top:-60px;left:-60px;width:220px;height:220px;background:rgba(165,180,252,0.2);border-radius:50%;filter:blur(50px)}.pru-badge{background:rgba(255,255,255,0.15);backdrop-filter:blur(5px);border:1px solid rgba(255,255,255,0.2);color:#e0e7ff;font-size:13px;font-weight:700;text-transform:uppercase;padding:6px 18px;border-radius:50px;display:inline-block;margin-bottom:12px}.pru-title{font-size:38px;font-weight:900;margin:0;line-height:1.2;background:linear-gradient(to bottom,#fff,#e0e7ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.pru-subtitle{font-size:18px;font-weight:400;color:#c7d2fe;margin-top:8px}.pru-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;padding:20px 30px;margin-top:-25px;position:relative;z-index:10}.pru-card{background:#fff;padding:15px 10px;border-radius:16px;text-align:center;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1);border:1px solid #f1f5f9;transition:transform .2s ease}.pru-icon-circle{width:50px;height:50px;background-color:#eef2ff;color:#4f46e5;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;margin:0 auto 10px auto}.pru-card h4{margin:0;font-size:15px;font-weight:800;color:#1e293b}.pru-card span{font-size:12px;color:#64748b;font-weight:600;display:block;margin-top:2px}.pru-content{padding:40px 35px;line-height:1.8;font-size:17px;color:#475569}.pru-highlight{background-color:#eef2ff;color:#4338ca;padding:2px 6px;border-radius:4px;font-weight:700}.pru-features-box{background-color:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:25px;margin-top:25px}.pru-feature-item{display:flex;align-items:flex-start;margin-bottom:18px}.pru-feature-item:last-child{margin-bottom:0}.pru-check{color:#4f46e5;font-size:18px;margin-left:12px;margin-top:4px;flex-shrink:0}.pru-feature-title{font-weight:800;color:#1e293b;display:block;margin-bottom:4px;font-size:16px}.pru-feature-desc{font-size:15px;color:#64748b;line-height:1.6}@media (max-width:768px){.pru-wrapper{margin:10px}.pru-header{padding:30px 15px 40px 15px}.pru-title{font-size:26px}.pru-subtitle{font-size:15px}.pru-grid{grid-template-columns:1fr 1fr;gap:10px;padding:0 15px;margin-top:-30px}.pru-card{padding:12px 5px}.pru-icon-circle{width:38px;height:38px;font-size:16px;margin-bottom:8px}.pru-card h4{font-size:13px}.pru-card span{font-size:11px}.pru-content{padding:25px 20px;font-size:16px}.pru-features-box{padding:20px 15px}}</style><div class="pru-wrapper"><div class="pru-header"><span class="pru-badge"><i class="fa-solid fa-arrows-up-down-left-right"></i> تحكم كامل</span><h2 class="pru-title">Prumysl Tri-PTZ 15MP</h2><div class="pru-subtitle">3 كاميرات متحركة • 3 شاشات • طاقة 16W</div></div><div class="pru-grid"><div class="pru-card"><div class="pru-icon-circle"><i class="fa-solid fa-video"></i></div><h4>3 كاميرات</h4><span>كلها متحركة PTZ</span></div><div class="pru-card"><div class="pru-icon-circle"><i class="fa-solid fa-eye"></i></div><h4>15 ميغابكسيل</h4><span>دقة عالية 3x5MP</span></div><div class="pru-card"><div class="pru-icon-circle"><i class="fa-solid fa-solar-panel"></i></div><h4>شحن سريع</h4><span>16W + 8000mAh</span></div><div class="pru-card"><div class="pru-icon-circle"><i class="fa-solid fa-file-video"></i></div><h4>ضغط ذكي</h4><span>تقنية H.265</span></div></div><div class="pru-content"><p>أحدث ثورة في عالم المراقبة مع <strong>Prumysl Tri-PTZ 15MP</strong>. الجهاز الوحيد الذي يدمج <span class="pru-highlight">3 كاميرات PTZ مستقلة</span> في هيكل واحد، مما يتيح لك التحكم في اتجاه كل عدسة على حدة من هاتفك لتغطية كل الزوايا بدون استثناء.</p><div class="pru-features-box"><div class="pru-feature-item"><i class="fa-solid fa-circle-check pru-check"></i><div><span class="pru-feature-title">3 عدسات PTZ متحركة بالكامل</span><span class="pru-feature-desc">على عكس الكاميرات العادية، يمكنك تحريك <strong>كل عدسة من العدسات الثلاث</strong> يميناً ويساراً من هاتفك لضمان مراقبة 360° حقيقية.</span></div></div><div class="pru-feature-item"><i class="fa-solid fa-circle-check pru-check"></i><div><span class="pru-feature-title">جودة 15 ميغابكسيل و 3 شاشات</span><span class="pru-feature-desc">ثلاثة مستشعرات بدقة 5MP لكل واحد (المجموع 15MP) تعرض لك 3 شاشات بث حي في وقت واحد على تطبيق V380 Pro.</span></div></div><div class="pru-feature-item"><i class="fa-solid fa-circle-check pru-check"></i><div><span class="pru-feature-title">طاقة متجددة 24/24</span><span class="pru-feature-desc">تعمل ببطارية 8000mAh ولوحين شمسيين بقوة إجمالية <span class="pru-highlight">16 واط</span>، مما يضمن عملها المستمر دون الحاجة للكهرباء.</span></div></div><div class="pru-feature-item"><i class="fa-solid fa-circle-check pru-check"></i><div><span class="pru-feature-title">تقنية H.265 وزووم 10X</span><span class="pru-feature-desc">ضغط فيديو متطور لتوفير استهلاك بيانات 4G ومساحة التخزين، مع زووم رقمي 10X لتقريب التفاصيل بدقة.</span></div></div></div><p style="margin-top: 25px; text-align: center; font-size: 14px; color: #94a3b8;"><em>تعمل بشريحة 4G فقط – الحل الأمثل للمراقبة الشاملة بدون نقاط عمياء.</em></p></div></div>`
-            },
-            'duo': {
-                title: 'Prumysl Duo 18W',
-                desc: 'كاميرا منخفضة الاستهلاك، 15 ميغابكسيل، لوحين 18W.',
-                price: 899,
-                oldPrice: 1400,
-                tag: 'اقتصادي',
-                images: [
-                    'img/Prumysl Duo 18W/Prumysl Duo 18W-main.jpg',
-                    'img/Prumysl Duo 18W/Prumysl Duo 18W-thumb-1.jpg',
-                    'img/Prumysl Duo 18W/Prumysl Duo 18W-thumb-2.jpg'
-                ],
-                html: `<style>.pru-wrapper{font-family:'Cairo',sans-serif;direction:rtl;max-width:850px;margin:20px auto;background-color:#fff;color:#334155;border:1px solid #e2e8f0;border-radius:20px;box-shadow:0 20px 50px -10px rgba(15,23,42,0.1);overflow:hidden;text-align:right}.pru-header{background:radial-gradient(circle at top right,#1e293b,#0f172a);padding:40px 30px;text-align:center;color:#fff;position:relative;overflow:hidden}.pru-header::before{content:'';position:absolute;top:-50px;left:-50px;width:200px;height:200px;background:rgba(245,158,11,0.1);border-radius:50%;filter:blur(40px)}.pru-badge{background:rgba(255,255,255,0.15);backdrop-filter:blur(5px);border:1px solid rgba(255,255,255,0.2);color:#fcd34d;font-size:13px;font-weight:700;text-transform:uppercase;padding:6px 18px;border-radius:50px;display:inline-block;margin-bottom:12px}.pru-title{font-size:38px;font-weight:900;margin:0;line-height:1.2;background:linear-gradient(to bottom,#fff,#cbd5e1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.pru-subtitle{font-size:18px;font-weight:400;color:#94a3b8;margin-top:8px}.pru-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;padding:20px 30px;margin-top:-25px;position:relative;z-index:10}.pru-card{background:#fff;padding:15px 10px;border-radius:16px;text-align:center;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1);border:1px solid #f1f5f9;transition:transform .2s ease}.pru-icon-circle{width:50px;height:50px;background-color:#fff7ed;color:#f59e0b;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;margin:0 auto 10px auto}.pru-card h4{margin:0;font-size:15px;font-weight:800;color:#1e293b}.pru-card span{font-size:12px;color:#64748b;font-weight:600;display:block;margin-top:2px}.pru-content{padding:40px 35px;line-height:1.8;font-size:17px;color:#475569}.pru-highlight{background-color:#fff7ed;color:#b45309;padding:2px 6px;border-radius:4px;font-weight:700}.pru-features-box{background-color:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:25px;margin-top:25px}.pru-feature-item{display:flex;align-items:flex-start;margin-bottom:18px}.pru-feature-item:last-child{margin-bottom:0}.pru-check{color:#22c55e;font-size:18px;margin-left:12px;margin-top:4px;flex-shrink:0}.pru-feature-title{font-weight:800;color:#1e293b;display:block;margin-bottom:4px;font-size:16px}.pru-feature-desc{font-size:15px;color:#64748b;line-height:1.6}@media (max-width:768px){.pru-wrapper{margin:10px}.pru-header{padding:30px 15px 40px 15px}.pru-title{font-size:26px}.pru-subtitle{font-size:15px}.pru-grid{grid-template-columns:1fr 1fr;gap:10px;padding:0 15px;margin-top:-30px}.pru-card{padding:12px 5px}.pru-icon-circle{width:38px;height:38px;font-size:16px;margin-bottom:8px}.pru-card h4{font-size:13px}.pru-card span{font-size:11px}.pru-content{padding:25px 20px;font-size:16px}.pru-features-box{padding:20px 15px}}</style><div class="pru-wrapper"><div class="pru-header"><span class="pru-badge"><i class="fa-solid fa-star"></i> نسخة أوروبية أصلية</span><h2 class="pru-title">Prumysl Duo 18W</h2><div class="pru-subtitle">كاميرا شمسية 4G بروميسل</div></div><div class="pru-grid"><div class="pru-card"><div class="pru-icon-circle"><i class="fa-solid fa-signal"></i></div><h4>شريحة 4G</h4><span>بدون واي فاي</span></div><div class="pru-card"><div class="pru-icon-circle"><i class="fa-solid fa-solar-panel"></i></div><h4>طاقة مزدوجة</h4><span>لوحان للشحن</span></div><div class="pru-card"><div class="pru-icon-circle"><i class="fa-solid fa-camera-rotate"></i></div><h4>3 عدسات</h4><span>زووم دقيق</span></div><div class="pru-card"><div class="pru-icon-circle"><i class="fa-solid fa-shield-halved"></i></div><h4>مقاومة تامة</h4><span>IP66 للأجواء</span></div></div><div class="pru-content"><p>استمتع بأقصى درجات الأمان مع <strong>Prumysl Duo 18W</strong>، الكاميرا الشمسية المتطورة المصممة خصيصاً لأصحاب الفلل، الضيعات، والمشاريع الكبرى في المغرب. هذا الإصدار الأوروبي يمنحك <span class="pru-highlight">راحة البال 24/24</span>.</p><div class="pru-features-box"><div class="pru-feature-item"><i class="fa-solid fa-circle-check pru-check"></i><div><span class="pru-feature-title">استقلالية تامة (بدون كهرباء)</span><span class="pru-feature-desc">تشتغل بنظام <span class="pru-highlight">4G LTE</span> فقط. لا تحتاج إلى كابلات Fiber أو شبكة Wi-Fi.</span></div></div><div class="pru-feature-item"><i class="fa-solid fa-circle-check pru-check"></i><div><span class="pru-feature-title">طاقة لا تنفذ (Dual Solar)</span><span class="pru-feature-desc">مزودة بـ <span class="pru-highlight">لوحين للطاقة الشمسية</span> وبطارية مدمجة لشحن مستمر ليلاً ونهاراً.</span></div></div><div class="pru-feature-item"><i class="fa-solid fa-circle-check pru-check"></i><div><span class="pru-feature-title">دقة عالية وزووم (3 عدسات)</span><span class="pru-feature-desc">جودة صورة HD مع <strong>3 عدسات</strong> توفر زووم دقيق ورؤية ليلية ملونة.</span></div></div><div class="pru-feature-item"><i class="fa-solid fa-circle-check pru-check"></i><div><span class="pru-feature-title">تصميم قوي للأجواء المغربية</span><span class="pru-feature-desc">حماية معتمدة <span class="pru-highlight">IP66</span> ضد الغبار، الأمطار، والحرارة العالية.</span></div></div></div><p style="margin-top: 25px; text-align: center; font-size: 14px; color: #94a3b8;"><em>مثالية للمناطق النائية، الحقول الزراعية، ومواقع البناء.</em></p></div></div>`
-            },
-            'euro': {
-                title: 'Prumysl Euro-Shield',
-                desc: 'نسخة أوروبية متطورة، لوحين للطاقة وبطارية مدمجة.',
-                price: 699,
-                oldPrice: 1200,
-                tag: 'للضيعات',
-                images: [
-                    'img/Prumysl Euro-Shield/Prumysl Euro-Shield-main.jpg',
-                    'img/Prumysl Euro-Shield/Prumysl Euro-Shield-thumb-1.jpg',
-                    'img/Prumysl Euro-Shield/Prumysl Euro-Shield-thumb-2.jpg'
-                ],
-                html: `<style>.pru-wrapper{font-family:'Cairo',sans-serif;direction:rtl;max-width:850px;margin:20px auto;background-color:#fff;color:#334155;border:1px solid #e2e8f0;border-radius:20px;box-shadow:0 20px 50px -10px rgba(15,23,42,0.1);overflow:hidden;text-align:right}.pru-header{background:radial-gradient(circle at top right,#064e3b,#10b981);padding:40px 30px;text-align:center;color:#fff;position:relative;overflow:hidden}.pru-header::before{content:'';position:absolute;top:-60px;left:-60px;width:220px;height:220px;background:rgba(110,231,183,0.2);border-radius:50%;filter:blur(50px)}.pru-badge{background:rgba(255,255,255,0.15);backdrop-filter:blur(5px);border:1px solid rgba(255,255,255,0.2);color:#d1fae5;font-size:13px;font-weight:700;text-transform:uppercase;padding:6px 18px;border-radius:50px;display:inline-block;margin-bottom:12px}.pru-title{font-size:38px;font-weight:900;margin:0;line-height:1.2;background:linear-gradient(to bottom,#fff,#ecfdf5);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.pru-subtitle{font-size:18px;font-weight:400;color:#a7f3d0;margin-top:8px}.pru-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;padding:20px 30px;margin-top:-25px;position:relative;z-index:10}.pru-card{background:#fff;padding:15px 10px;border-radius:16px;text-align:center;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1);border:1px solid #f1f5f9;transition:transform .2s ease}.pru-icon-circle{width:50px;height:50px;background-color:#ecfdf5;color:#059669;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;margin:0 auto 10px auto}.pru-card h4{margin:0;font-size:15px;font-weight:800;color:#1e293b}.pru-card span{font-size:12px;color:#64748b;font-weight:600;display:block;margin-top:2px}.pru-content{padding:40px 35px;line-height:1.8;font-size:17px;color:#475569}.pru-highlight{background-color:#ecfdf5;color:#047857;padding:2px 6px;border-radius:4px;font-weight:700}.pru-features-box{background-color:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:25px;margin-top:25px}.pru-feature-item{display:flex;align-items:flex-start;margin-bottom:18px}.pru-feature-item:last-child{margin-bottom:0}.pru-check{color:#10b981;font-size:18px;margin-left:12px;margin-top:4px;flex-shrink:0}.pru-feature-title{font-weight:800;color:#1e293b;display:block;margin-bottom:4px;font-size:16px}.pru-feature-desc{font-size:15px;color:#64748b;line-height:1.6}@media (max-width:768px){.pru-wrapper{margin:10px}.pru-header{padding:30px 15px 40px 15px}.pru-title{font-size:26px}.pru-subtitle{font-size:15px}.pru-grid{grid-template-columns:1fr 1fr;gap:10px;padding:0 15px;margin-top:-30px}.pru-card{padding:12px 5px}.pru-icon-circle{width:38px;height:38px;font-size:16px;margin-bottom:8px}.pru-card h4{font-size:13px}.pru-card span{font-size:11px}.pru-content{padding:25px 20px;font-size:16px}.pru-features-box{padding:20px 15px}}</style><div class="pru-wrapper"><div class="pru-header"><span class="pru-badge"><i class="fa-solid fa-leaf"></i> اقتصادية ذكية</span><h2 class="pru-title">Prumysl Eco-Dual 18W</h2><div class="pru-subtitle">15 ميغابكسيل • عدستين • استهلاك منخفض</div></div><div class="pru-grid"><div class="pru-card"><div class="pru-icon-circle"><i class="fa-solid fa-battery-half"></i></div><h4>توفير الطاقة</h4><span>نظام ذكي PIR</span></div><div class="pru-card"><div class="pru-icon-circle"><i class="fa-solid fa-clone"></i></div><h4>عدستان</h4><span>ثابتة + متحركة</span></div><div class="pru-card"><div class="pru-icon-circle"><i class="fa-solid fa-sun"></i></div><h4>طاقة 18W</h4><span>لوحين شمسيين</span></div><div class="pru-card"><div class="pru-icon-circle"><i class="fa-solid fa-wifi"></i></div><h4>4G / WiFi</h4><span>اختر نسختك</span></div></div><div class="pru-content"><p>اكتشف الجيل الجديد من المراقبة الاقتصادية مع <strong>Prumysl Eco-Dual 18W</strong>. كاميرا مصممة بذكاء لتدوم طويلاً بفضل تقنية <span class="pru-highlight">Low Power Consumption</span>، حيث تدخل في وضع "النوم" لتوفير البطارية وتستيقظ فوراً عند رصد أي حركة، مما يجعلها مثالية للأماكن التي تحتاج لطاقة مستدامة.</p><div class="pru-features-box"><div class="pru-feature-item"><i class="fa-solid fa-circle-check pru-check"></i><div><span class="pru-feature-title">نظام PIR الذكي (استيقاظ تلقائي)</span><span class="pru-feature-desc">الكاميرا توفر البطارية بذكاء؛ فهي تبقى في وضع الاستعداد وتعمل بأقصى طاقتها فقط عند مرور شخص أو جسم، لتضمن لك مراقبة طويلة الأمد.</span></div></div><div class="pru-feature-item"><i class="fa-solid fa-circle-check pru-check"></i><div><span class="pru-feature-title">شحن شمسي قوي (18W Total)</span><span class="pru-feature-desc">مزودة بـ <strong>لوحين شمسيين</strong> بقوة إجمالية 18 واط وبطارية 8000mAh، لضمان شحن سريع وكافٍ حتى في الأيام الغائمة.</span></div></div><div class="pru-feature-item"><i class="fa-solid fa-circle-check pru-check"></i><div><span class="pru-feature-title">عدستان وشاشتان (Dual Screen)</span><span class="pru-feature-desc">تجمع بين عدسة ثابتة للمراقبة العامة وعدسة PTZ متحركة للتركيز، مما يمنحك شاشتين للعرض في التطبيق بدقة 15 ميغابكسيل HD.</span></div></div><div class="pru-feature-item"><i class="fa-solid fa-circle-check pru-check"></i><div><span class="pru-feature-title">متوفرة بنسختين (4G أو WiFi)</span><span class="pru-feature-desc">• <strong>نسخة 4G:</strong> تعمل بشريحة فقط (للمناطق البعيدة).<br>• <strong>نسخة WiFi:</strong> تدعم 2.4GHz للمنازل والمكاتب.</span></div></div></div><p style="margin-top: 25px; text-align: center; font-size: 14px; color: #94a3b8;"><em>تأكد من اختيار النسخة المناسبة (شريحة أو واي فاي) قبل إتمام الطلب.</em></p></div></div>`
-            }
-        };
-
-        /* --- 2. Render Product Grid --- */
-        const productGrid = document.getElementById('productGrid');
-        
-        Object.keys(products).forEach(key => {
-            const p = products[key];
-            const discount = Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100);
-            
-            const cardHTML = `
-            <div class="product-card">
-                <div class="badges-container">
-                    <div class="badge badge-sale">-${discount}%</div>
-                    ${p.tag ? `<div class="badge badge-tag">${p.tag}</div>` : ''}
-                </div>
-                <div class="card-image-wrap">
-                    <img src="${p.images[0]}" alt="${p.title}" loading="lazy">
-                </div>
-                <div class="card-content">
-                    <h3 class="product-title">${p.title}</h3>
-                    <p class="product-desc">${p.desc}</p>
-                    <div class="price-wrapper">
-                        <div class="price-row">
-                            <div class="current-price">${p.price} <span>DH</span></div>
-                            <div class="old-price">${p.oldPrice} DH</div>
-                        </div>
-                    </div>
-                    <button class="btn-details" onclick="openModal('${key}')">
-                        التفاصيل <i class="fa-solid fa-arrow-left"></i>
-                    </button>
-                </div>
-            </div>`;
-            productGrid.innerHTML += cardHTML;
-        });
-
-        /* --- 3. Modal Logic --- */
-        const modal = document.getElementById('productModal');
-        const modalBody = document.getElementById('modalBody');
-        const modalMainImg = document.getElementById('modalMainImg');
-        const modalThumbStrip = document.getElementById('modalThumbStrip');
-        
-        // Modal Order Info Elements
-        const modalProductName = document.getElementById('modalProductName');
-        const modalCurrentPrice = document.getElementById('modalCurrentPrice');
-        const modalOldPrice = document.getElementById('modalOldPrice');
-
-        function openModal(productId) {
-            const p = products[productId];
-            
-            // 1. Reset Forms
-            document.getElementById('orderForm').style.display = 'block';
-            document.getElementById('orderForm').reset();
-            document.getElementById('successMessage').style.display = 'none';
-
-            // 2. Populate Order Box Info
-            modalProductName.textContent = p.title;
-            modalCurrentPrice.textContent = p.price + ' DH';
-            modalOldPrice.textContent = p.oldPrice + ' DH';
-
-            // 3. Inject Description
-            modalBody.innerHTML = p.html;
-
-            // 4. Setup Gallery
-            if (p.images.length > 0) {
-                modalMainImg.src = p.images[0];
-                modalThumbStrip.innerHTML = p.images.map((src, index) => `
-                    <div class="thumb-btn ${index === 0 ? 'active' : ''}" onclick="switchImage('${src}', this)">
-                        <img src="${src}" alt="Thumb">
-                    </div>
-                `).join('');
-            }
-
-            // 5. Show Modal
-            modal.style.display = 'flex';
-            requestAnimationFrame(() => modal.classList.add('active'));
-            document.body.style.overflow = 'hidden';
-        }
-
-        function switchImage(src, thumbElement) {
-            modalMainImg.style.opacity = '0.4';
-            setTimeout(() => {
-                modalMainImg.src = src;
-                modalMainImg.style.opacity = '1';
-            }, 150);
-            document.querySelectorAll('.thumb-btn').forEach(btn => btn.classList.remove('active'));
-            thumbElement.classList.add('active');
-        }
-
-        function closeModal() {
-            modal.classList.remove('active');
-            setTimeout(() => { modal.style.display = 'none'; }, 300);
-            document.body.style.overflow = '';
-        }
-
-        function handleOrderSubmit(e) {
-            e.preventDefault();
-            const btn = e.target.querySelector('.btn-submit');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> جاري الإرسال...';
-            btn.style.animation = 'none'; // Stop pulsing
-            
-            setTimeout(() => {
-                document.getElementById('formContent').style.display = 'none';
-                document.getElementById('successMessage').style.display = 'block';
-                btn.innerHTML = originalText;
-                // Auto scroll to success message if needed
-                document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
-            }, 1500);
-        }
-
-        window.onclick = (e) => { if(e.target == modal) closeModal(); };
-    </script>
 
 </body>
 </html>
