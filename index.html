@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Prumysl - المنتجات الأمنية</title>
+    <title>Prumysl - كاميرات المراقبة</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;500;700;900&display=swap" rel="stylesheet">
     <style>
         /* --- 1. Variables & Reset --- */
         :root {
             --accent-color: #00D179; 
+            --whatsapp-color: #25D366; /* WhatsApp Brand Color */
             --text-primary: #111111;
             --text-secondary: #86868b;
             --bg-body: #F5F5F7; 
             --bg-card: #FFFFFF;
-            --glass-bg: rgba(255, 255, 255, 0.9);
+            --glass-bg: rgba(255, 255, 255, 0.95);
             --glass-blur: blur(15px);
             --radius: 20px;
             
@@ -116,7 +117,7 @@
 
         .btn-cta:hover { transform: translateY(-3px); background-color: #000; box-shadow: 0 10px 25px rgba(0,0,0,0.25); }
 
-        /* --- 4. Product Grid --- */
+        /* --- 4. Product Grid (WhatsApp Optimized) --- */
         .section-header { text-align: center; margin-bottom: 30px; position: relative; }
         .section-header::after { content: ''; display: block; width: 40px; height: 3px; background-color: #e5e5e5; margin: 15px auto 0 auto; border-radius: 2px; }
         .section-header h1 { font-size: 1.8rem; font-weight: 900; margin: 0; color: var(--text-primary); }
@@ -125,14 +126,13 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr); 
             gap: 12px;
-            margin-bottom: 80px; /* Space before Info Section */
+            margin-bottom: 80px; 
         }
 
         @media (min-width: 1024px) {
             .product-grid { grid-template-columns: repeat(5, 1fr); gap: 25px; }
         }
 
-        /* --- 5. Card Design --- */
         .product-card {
             background: var(--bg-card);
             border-radius: 16px;
@@ -155,148 +155,161 @@
             display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; 
         }
 
-        .card-actions { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 8px; border-top: 1px solid rgba(0,0,0,0.04); }
-        .product-price { font-size: 1.1rem; font-weight: 900; color: var(--text-primary); }
+        /* Action Area Optimized for WhatsApp */
+        .card-actions { display: flex; flex-direction: column; gap: 8px; margin-top: auto; padding-top: 8px; border-top: 1px solid rgba(0,0,0,0.04); }
+        
+        .price-row {
+            display: flex; justify-content: space-between; align-items: center; width: 100%;
+        }
+        .product-price { font-size: 1.2rem; font-weight: 900; color: var(--text-primary); }
         .currency { font-size: 0.7rem; font-weight: 600; color: var(--text-secondary); margin-right: 2px; vertical-align: top; }
         
-        .btn-icon { width: 34px; height: 34px; border-radius: 50%; background-color: #f1f1f1; display: flex; align-items: center; justify-content: center; color: var(--text-primary); transition: 0.2s; }
+        /* WhatsApp Button */
+        .btn-whatsapp-card {
+            width: 100%;
+            background-color: var(--whatsapp-color);
+            color: #fff;
+            border-radius: 8px;
+            padding: 8px 0;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        
+        .btn-whatsapp-card:hover { filter: brightness(95%); transform: translateY(-2px); }
+        .btn-whatsapp-card svg { width: 18px; height: 18px; fill: white; }
 
         @media (min-width: 1024px) {
             .product-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-card); }
-            .product-card:hover .card-image img { transform: translate(-50%, -50%) scale(1.08); }
-            .product-card:hover .btn-icon { background-color: var(--text-primary); color: #fff; }
             .card-content { padding: 20px; }
             .product-title { font-size: 1.1rem; }
             .product-desc { font-size: 0.9rem; -webkit-line-clamp: 3; }
-            .product-price { font-size: 1.25rem; }
-            .btn-icon { width: 42px; height: 42px; }
+            .btn-whatsapp-card { padding: 10px 0; font-size: 1rem; }
         }
 
-        /* --- 6. INFO SECTION (Moved Bottom) --- */
+        /* --- 5. INFO SECTION --- */
         .info-section {
             background-color: #fff;
             border-radius: var(--radius);
             padding: 40px;
             box-shadow: var(--shadow-card);
             border: 1px solid rgba(0,0,0,0.03);
-            scroll-margin-top: 100px; /* Offset for sticky header when scrolling */
+            scroll-margin-top: 100px;
+            margin-bottom: 80px; 
         }
 
         .info-header { text-align: center; margin-bottom: 30px; }
         .info-header h2 { margin: 0; font-size: 1.8rem; color: var(--text-primary); }
 
-        .info-container {
-            display: flex;
-            gap: 40px;
-            min-height: 500px; 
-        }
-
-        /* Sidebar Navigation */
-        .info-nav {
-            flex: 0 0 300px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .nav-item {
-            display: flex;
-            align-items: center;
-            padding: 12px 15px;
-            background: #f9f9f9;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border: 2px solid transparent;
-            -webkit-tap-highlight-color: rgba(0,0,0,0.05);
-        }
-
-        .nav-item.active {
-            background: #fff;
-            border-color: var(--accent-color);
-            box-shadow: 0 4px 12px rgba(0,209,121, 0.15);
-        }
-
-        .nav-thumb {
-            width: 50px; height: 50px;
-            border-radius: 8px;
-            object-fit: cover;
-            margin-left: 15px;
-            background: #fff;
-            border: 1px solid #eee;
-        }
-
+        .info-container { display: flex; gap: 40px; min-height: 500px; }
+        .info-nav { flex: 0 0 300px; display: flex; flex-direction: column; gap: 10px; }
+        .nav-item { display: flex; align-items: center; padding: 12px 15px; background: #f9f9f9; border-radius: 12px; cursor: pointer; transition: all 0.2s ease; border: 2px solid transparent; }
+        .nav-item.active { background: #fff; border-color: var(--accent-color); box-shadow: 0 4px 12px rgba(0,209,121, 0.15); }
+        .nav-thumb { width: 50px; height: 50px; border-radius: 8px; object-fit: cover; margin-left: 15px; background: #fff; border: 1px solid #eee; }
         .nav-text { font-weight: 700; font-size: 0.95rem; color: var(--text-primary); }
-
-        /* Content Display */
-        .info-display {
-            flex: 1;
-            background: #Fcfcfc;
-            border-radius: 16px;
-            padding: 30px;
-            border: 1px solid rgba(0,0,0,0.03);
-        }
-
-        .info-content { display: none; animation: fadeIn 0.4s ease-out; }
-        .info-content.active { display: block; }
-
-        .content-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 25px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 15px;
-        }
-
+        .info-display { flex: 1; background: #Fcfcfc; border-radius: 16px; padding: 30px; border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column; }
+        .info-content { display: none; animation: fadeIn 0.4s ease-out; flex-grow: 1; }
+        .info-content.active { display: flex; flex-direction: column; }
+        .content-header { display: flex; align-items: center; margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
         .content-header h3 { margin: 0; font-size: 1.5rem; color: var(--text-primary); }
-        .badge {
-            background: var(--accent-color);
-            color: #fff;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            margin-right: auto; 
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .feature-item h4 {
-            margin: 0 0 5px 0;
-            font-size: 0.95rem;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-        }
-        
-        .feature-item h4::before {
-            content: '✓';
-            color: var(--accent-color);
-            margin-left: 8px;
-            font-weight: 900;
-        }
-
+        .badge { background: var(--accent-color); color: #fff; padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; margin-right: auto; }
+        .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 30px; }
+        .feature-item h4 { margin: 0 0 5px 0; font-size: 0.95rem; color: var(--text-primary); display: flex; align-items: center; }
+        .feature-item h4::before { content: '✓'; color: var(--accent-color); margin-left: 8px; font-weight: 900; }
         .feature-item p { margin: 0; font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; }
-
-        .recommendation-box {
-            background: rgba(0, 209, 121, 0.08); 
-            padding: 20px;
-            border-radius: 12px;
-            border-right: 4px solid var(--accent-color);
-        }
-
+        .recommendation-box { background: rgba(0, 209, 121, 0.08); padding: 20px; border-radius: 12px; border-right: 4px solid var(--accent-color); margin-bottom: 20px; }
         .rec-title { font-weight: 900; color: var(--text-primary); margin-bottom: 8px; display: block; }
         .rec-text { font-size: 0.95rem; color: #333; line-height: 1.6; font-style: italic; }
 
-        /* --- 7. Footer --- */
-        .site-footer { text-align: center; padding: 40px 20px; background-color: #fff; color: var(--text-secondary); font-size: 0.85rem; margin-top: auto; }
-        .footer-links { display: flex; justify-content: center; gap: 25px; margin-bottom: 20px; }
-        .footer-links a { font-weight: 600; color: var(--text-primary); }
+        /* Order Button inside Info */
+        .btn-info-order {
+            margin-top: auto;
+            background-color: var(--text-primary);
+            color: #fff;
+            text-align: center;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            transition: 0.3s;
+        }
+        .btn-info-order:hover { background-color: var(--whatsapp-color); }
+
+        .mobile-scroll-hint { display: none; text-align: center; font-size: 0.9rem; color: var(--accent-color); margin-bottom: 12px; font-weight: 700; animation: pulse 2s infinite; }
+
+        @keyframes pulse { 0% { opacity: 0.7; transform: translateX(0); } 50% { opacity: 1; transform: translateX(-3px); } 100% { opacity: 0.7; transform: translateX(0); } }
+
+        /* --- 6. REVIEWS SECTION --- */
+        .reviews-section { margin-bottom: 40px; }
+        .reviews-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        
+        @media (min-width: 1024px) {
+            .reviews-grid { grid-template-columns: repeat(4, 1fr); gap: 25px; }
+        }
+
+        .review-card {
+            background: var(--bg-card);
+            padding: 25px 20px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(0,0,0,0.03);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .review-stars { color: #FFD700; font-size: 1.1rem; margin-bottom: 12px; letter-spacing: 2px; }
+        .review-text { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 15px; font-style: italic; flex-grow: 1; }
+        .review-author { font-weight: 700; color: var(--text-primary); font-size: 0.95rem; }
+
+        /* --- 7. FOOTER --- */
+        .site-footer {
+            background-color: #fff;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: auto;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            padding: 60px 20px 30px 20px;
+            padding-bottom: 100px; /* Extra padding for Floating Button */
+        }
+
+        .footer-container { max-width: 600px; margin: 0 auto; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 25px; }
+        .footer-logo { height: 45px; width: auto; opacity: 0.9; margin-bottom: 10px; }
+        .footer-desc { font-size: 0.95rem; line-height: 1.6; margin: 0; max-width: 500px; color: var(--text-secondary); }
+        .footer-links { display: flex; gap: 25px; margin: 10px 0; flex-wrap: wrap; justify-content: center; }
+        .footer-links a { font-weight: 600; color: var(--text-primary); position: relative; }
+        .copyright { font-size: 0.8rem; color: #999; margin-top: 10px; }
+
+        /* --- 8. FLOATING WHATSAPP BUTTON --- */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--whatsapp-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 2000;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+        }
+
+        .floating-whatsapp:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6); }
+        .floating-whatsapp svg { width: 32px; height: 32px; fill: white; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -309,40 +322,28 @@
 
             .product-grid { margin-bottom: 40px; }
 
-            .info-section { padding: 20px 15px; }
+            .info-section { padding: 20px 15px; margin-bottom: 40px; }
             .info-header h2 { font-size: 1.5rem; }
             .info-container { flex-direction: column; gap: 20px; min-height: auto; }
             
-            .info-nav { 
-                flex-direction: row; 
-                flex: none; 
-                overflow-x: auto; 
-                padding-bottom: 10px;
-                scroll-snap-type: x mandatory;
-                gap: 12px;
-                -ms-overflow-style: none;  
-                scrollbar-width: none;  
-            }
-            .info-nav::-webkit-scrollbar { display: none; }
-            
-            .nav-item { 
-                min-width: 150px; 
-                flex-direction: column; 
-                text-align: center; 
-                padding: 12px; 
-                scroll-snap-align: center; 
-                border: 1px solid #eee;
-            }
-            .nav-item.active { border-color: var(--accent-color); background: #f0fff7; }
+            .mobile-scroll-hint { display: block; }
 
+            .info-nav { flex-direction: row; flex: none; overflow-x: auto; padding-bottom: 10px; scroll-snap-type: x mandatory; gap: 12px; -ms-overflow-style: none; scrollbar-width: none; }
+            .info-nav::-webkit-scrollbar { display: none; }
+            .nav-item { min-width: 150px; flex-direction: column; text-align: center; padding: 12px; scroll-snap-align: center; border: 1px solid #eee; }
+            .nav-item.active { border-color: var(--accent-color); background: #f0fff7; }
             .nav-thumb { margin: 0 0 10px 0; width: 50px; height: 50px; }
             .nav-text { font-size: 0.85rem; }
-
             .info-display { padding: 20px; }
             .features-grid { grid-template-columns: 1fr; gap: 15px; margin-bottom: 20px; }
             .content-header h3 { font-size: 1.3rem; }
 
-            .footer-links { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; max-width: 280px; margin: 0 auto 20px auto; }
+            .reviews-grid { gap: 10px; }
+            .review-card { padding: 15px; border-radius: 12px; }
+            .review-text { font-size: 0.8rem; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+            
+            .site-footer { padding: 40px 20px 100px 20px; }
+            .floating-whatsapp { bottom: 20px; right: 20px; width: 55px; height: 55px; }
         }
     </style>
 </head>
@@ -359,24 +360,30 @@
                 <img src="img/hero.jpg" alt="Security Monitoring Landscape">
             </div>
             <div class="hero-content">
-                <p class="hero-desc">استمتع بأمان لا مثيل له مع أحدث أنظمة المراقبة الذكية. حماية مستدامة وراحة بال دائمة.</p>
-                <a href="#info-section" class="btn-cta">دليلك لاختيار الكاميرا</a>
+                <p class="hero-desc">تهنا وارتاح مع أحدث أنظمة المراقبة الذكية. حماية ديما وراحة البال.</p>
+                <a href="#info-section" class="btn-cta">دليلك باش تختار الكاميرا</a>
             </div>
         </div>
 
         <header class="section-header" id="products-grid">
-            <h1>أحدث الحلول الأمنية</h1>
+            <h1>جديد الحلول الأمنية</h1>
         </header>
 
         <div class="product-grid">
+            
             <div class="product-card">
                 <div class="card-image"><img src="img/Prumysl Falcon 36X.jpg" alt="Prumysl Falcon 36X"></div>
                 <div class="card-content">
                     <h3 class="product-title">Prumysl Falcon 36X</h3>
                     <p class="product-desc">أقوى كاميرا للمراقبة بدقة 24MP وزووم 36X.</p>
                     <div class="card-actions">
-                        <div class="product-price">2800 <span class="currency">DH</span></div>
-                        <a href="#" class="btn-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></a>
+                        <div class="price-row">
+                            <div class="product-price">2800 <span class="currency">DH</span></div>
+                        </div>
+                        <a href="javascript:void(0)" onclick="orderWhatsApp('Prumysl Falcon 36X')" class="btn-whatsapp-card">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+                            أطلب عبر واتساب
+                        </a>
                     </div>
                 </div>
             </div>
@@ -385,10 +392,15 @@
                 <div class="card-image"><img src="img/Prumysl Vision 6K Pro.jpg" alt="Prumysl Vision 6K Pro"></div>
                 <div class="card-content">
                     <h3 class="product-title">Prumysl Vision 6K Pro</h3>
-                    <p class="product-desc">نظام 3 عدسات 6K وتغطية شاملة 360 درجة.</p>
+                    <p class="product-desc">نظام 3 عدسات 6K وتغطية كاملة 360 درجة.</p>
                     <div class="card-actions">
-                        <div class="product-price">1100 <span class="currency">DH</span></div>
-                        <a href="#" class="btn-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></a>
+                        <div class="price-row">
+                            <div class="product-price">1100 <span class="currency">DH</span></div>
+                        </div>
+                        <a href="javascript:void(0)" onclick="orderWhatsApp('Prumysl Vision 6K Pro')" class="btn-whatsapp-card">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+                            أطلب عبر واتساب
+                        </a>
                     </div>
                 </div>
             </div>
@@ -397,10 +409,15 @@
                 <div class="card-image"><img src="img/Prumysl Omni-Guard 360°.jpg" alt="Prumysl Omni-Guard 360°"></div>
                 <div class="card-content">
                     <h3 class="product-title">Prumysl Omni-Guard</h3>
-                    <p class="product-desc">كاميرا شمسية 4G، ثلاث شاشات حية ومراقبة ذكية.</p>
+                    <p class="product-desc">كاميرا بالطاقة الشمسية 4G، 3 شاشات ومراقبة ذكية.</p>
                     <div class="card-actions">
-                        <div class="product-price">1200 <span class="currency">DH</span></div>
-                        <a href="#" class="btn-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></a>
+                        <div class="price-row">
+                            <div class="product-price">1200 <span class="currency">DH</span></div>
+                        </div>
+                        <a href="javascript:void(0)" onclick="orderWhatsApp('Prumysl Omni-Guard')" class="btn-whatsapp-card">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+                            أطلب عبر واتساب
+                        </a>
                     </div>
                 </div>
             </div>
@@ -409,10 +426,15 @@
                 <div class="card-image"><img src="img/Prumysl Duo 18W.jpg" alt="Prumysl Duo 18W"></div>
                 <div class="card-content">
                     <h3 class="product-title">Prumysl Duo 18W</h3>
-                    <p class="product-desc">لوحين 18W، متوفرة بنسخة WiFi أو 4G.</p>
+                    <p class="product-desc">جوج ألواح 18W، كاينة نسخة WiFi و 4G.</p>
                     <div class="card-actions">
-                        <div class="product-price">899 <span class="currency">DH</span></div>
-                        <a href="#" class="btn-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></a>
+                        <div class="price-row">
+                            <div class="product-price">899 <span class="currency">DH</span></div>
+                        </div>
+                        <a href="javascript:void(0)" onclick="orderWhatsApp('Prumysl Duo 18W')" class="btn-whatsapp-card">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+                            أطلب عبر واتساب
+                        </a>
                     </div>
                 </div>
             </div>
@@ -421,10 +443,15 @@
                 <div class="card-image"><img src="img/Prumysl Euro-Shield.jpg" alt="Prumysl Euro-Shield"></div>
                 <div class="card-content">
                     <h3 class="product-title">Prumysl Euro-Shield</h3>
-                    <p class="product-desc">نسخة أوروبية متطورة للضيعات الزراعية.</p>
+                    <p class="product-desc">نسخة أوروبية متطورة خاصة بالفيرمات.</p>
                     <div class="card-actions">
-                        <div class="product-price">699 <span class="currency">DH</span></div>
-                        <a href="#" class="btn-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></a>
+                        <div class="price-row">
+                            <div class="product-price">699 <span class="currency">DH</span></div>
+                        </div>
+                        <a href="javascript:void(0)" onclick="orderWhatsApp('Prumysl Euro-Shield')" class="btn-whatsapp-card">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+                            أطلب عبر واتساب
+                        </a>
                     </div>
                 </div>
             </div>
@@ -432,9 +459,12 @@
 
         <section class="info-section" id="info-section">
             <div class="info-header">
-                <h2>دليلك لاختيار الكاميرا المثالية</h2>
+                <h2>دليلك باش تختار الكاميرا اللي تليق ليك</h2>
             </div>
             <div class="info-container">
+                
+                <div class="mobile-scroll-hint">← جر القائمة باش تشوف الموديلات كاملة →</div>
+
                 <div class="info-nav">
                     <div class="nav-item active" onclick="selectProduct(0)">
                         <img src="img/Prumysl Euro-Shield.jpg" class="nav-thumb" alt="Eco-Dual">
@@ -466,35 +496,18 @@
                             <span class="badge">الخيار الاقتصادي</span>
                         </div>
                         <div class="features-grid">
-                            <div class="feature-item">
-                                <h4>نظام PIR ذكي</h4>
-                                <p>يستخدم تقنية الاستهلاك المنخفض، حيث ينام عند عدم وجود حركة ويستيقظ فوراً عند الرصد.</p>
-                            </div>
-                            <div class="feature-item">
-                                <h4>تصميم ثنائي العدسة</h4>
-                                <p>عدسة ثابتة للنظرة العامة وعدسة متحركة (PTZ) للتتبع الدقيق.</p>
-                            </div>
-                            <div class="feature-item">
-                                <h4>طاقة شمسية 18W</h4>
-                                <p>مزودة بلوحين للطاقة الشمسية لتوفير شحن سريع ومستمر.</p>
-                            </div>
-                            <div class="feature-item">
-                                <h4>بطارية 8000mAh</h4>
-                                <p>بطارية مدمجة قوية تضمن التشغيل حتى في الأيام الغائمة.</p>
-                            </div>
-                            <div class="feature-item">
-                                <h4>شاشة عرض مزدوجة</h4>
-                                <p>توفر تغذيتين فيديو متميزتين على شاشتك بدقة 15MP HD.</p>
-                            </div>
-                            <div class="feature-item">
-                                <h4>اتصال مرن</h4>
-                                <p>متوفرة بنسخة 4G للمناطق النائية أو WiFi للمنازل والمكاتب.</p>
-                            </div>
+                            <div class="feature-item"><h4>نظام PIR ذكي</h4><p>كتنعس فاش ماكتكونش الحركة وكتفيق دغيا فاش كترصد شي حد.</p></div>
+                            <div class="feature-item"><h4>جوج عدسات</h4><p>وحدة فيكس ووحدة كتحرك (PTZ) باش تبع الحركة.</p></div>
+                            <div class="feature-item"><h4>طاقة شمسية 18W</h4><p>طاقة شمسية 18W بجوج بلايك باش تشارجي دغيا.</p></div>
+                            <div class="feature-item"><h4>بطارية 8000mAh</h4><p>بطارية 8000mAh باش تخدم حتى فاش مكيناش الشمس.</p></div>
+                            <div class="feature-item"><h4>شاشة عرض مزدوجة</h4><p>جوج شاشات فالتليفون بدقة 15MP HD.</p></div>
+                            <div class="feature-item"><h4>اتصال مرن</h4><p>كاينة نسخة 4G للمناطق البعيدة و WiFi للدار.</p></div>
                         </div>
                         <div class="recommendation-box">
-                            <span class="rec-title">توصية الخبراء:</span>
-                            <span class="rec-text">"إذا كانت لديك مزرعة أو موقع بموارد طاقة محدودة، فهذه الكاميرا مثالية لأنها تستخدم نظام توفير الطاقة الذكي لتعمل لفترات طويلة دون صيانة."</span>
+                            <span class="rec-title">نصيحة الخبراء:</span>
+                            <span class="rec-text">"إلا عندك فيرمة أو بلاصة مافيهاش الضو بزاف، هاد الكاميرا هي الحل حيت كتقتصد فالبطارية وكتخدم مدة طويلة بلا مشاكل."</span>
                         </div>
+                        <a href="javascript:void(0)" onclick="orderWhatsApp('Prumysl Eco-Dual 18W')" class="btn-info-order">طلب هاد الموديل دابا</a>
                     </div>
 
                     <div class="info-content">
@@ -503,109 +516,58 @@
                             <span class="badge">الأقوى تقريباً</span>
                         </div>
                         <div class="features-grid">
-                            <div class="feature-item">
-                                <h4>زووم بصري 36X</h4>
-                                <p>تكبير حقيقي للصورة دون فقدان الجودة (على عكس الزووم الرقمي).</p>
-                            </div>
-                            <div class="feature-item">
-                                <h4>دقة Ultra HD 24MP</h4>
-                                <p>دقة فائقة الوضوح لالتقاط أدق التفاصيل.</p>
-                            </div>
-                            <div class="feature-item">
-                                <h4>طاقة هائلة</h4>
-                                <p>تأتي مع ألواح شمسية بقدرة 20W وبطارية ضخمة بسعة 12,000mAh.</p>
-                            </div>
-                            <div class="feature-item">
-                                <h4>تتبع البشر بالذكاء الاصطناعي</h4>
-                                <p>تحدد البشر وتتبعهم تلقائياً مع إرسال تنبيهات فورية.</p>
-                            </div>
-                            <div class="feature-item">
-                                <h4>نظام العدسة المزدوجة</h4>
-                                <p>يجمع بين الرؤية الواسعة والتفاصيل المقربة في آن واحد.</p>
-                            </div>
-                            <div class="feature-item">
-                                <h4>وضوح المسافات البعيدة</h4>
-                                <p>مصممة خصيصاً لقراءة لوحات السيارات والوجوه من مسافات بعيدة جداً.</p>
-                            </div>
+                            <div class="feature-item"><h4>زووم بصري 36X</h4><p>زووم بصري 36X حقيقي، كتقرب الصورة بلا ما تخسر الجودة.</p></div>
+                            <div class="feature-item"><h4>دقة واعر 24MP</h4><p>دقة فائقة الوضوح لالتقاط أدق التفاصيل.</p></div>
+                            <div class="feature-item"><h4>طاقة هائلة</h4><p>فيها بلايك شمسية 20W وبطارية كبيرة 12,000mAh.</p></div>
+                            <div class="feature-item"><h4>تتبع البشر</h4><p>كتعرف بنادم وكتبعو أوتوماتيك وكصيفط ليك آلارم.</p></div>
+                            <div class="feature-item"><h4>نظام العدسة المزدوجة</h4><p>يجمع بين الرؤية الواسعة والتفاصيل المقربة في آن واحد.</p></div>
+                            <div class="feature-item"><h4>وضوح المسافات</h4><p>مخدومة خصيصاً باش تقرا الماتريكول وتعرف الوجوه من بعيد.</p></div>
                         </div>
                         <div class="recommendation-box">
-                            <span class="rec-title">توصية الخبراء:</span>
-                            <span class="rec-text">"إذا كانت لديك مساحات شاسعة أو أسوار طويلة، فهذه الكاميرا ضرورية بفضل الزووم البصري 36X الذي يسمح بقراءة اللوحات والوجوه من مسافات تعجز عنها الكاميرات العادية."</span>
+                            <span class="rec-title">نصيحة الخبراء:</span>
+                            <span class="rec-text">"إلا عندك فيرمة كبيرة أو سور طويل، خاصك هاد الكاميرا حيت الزووم 36X كيخليك تشوف الماتريكول والوجوه من بعيد بزاف."</span>
                         </div>
+                        <a href="javascript:void(0)" onclick="orderWhatsApp('Prumysl Falcon 36X')" class="btn-info-order">طلب هاد الموديل دابا</a>
                     </div>
 
                     <div class="info-content">
                         <div class="content-header">
                             <h3>Prumysl Duo 18W</h3>
-                            <span class="badge">المستقلة تماماً</span>
+                            <span class="badge">مستقلة 100%</span>
                         </div>
                         <div class="features-grid">
-                            <div class="feature-item">
-                                <h4>استقلالية تامة (4G LTE)</h4>
-                                <p>تعمل بدون واي فاي أو كهرباء، تعتمد كلياً على شريحة SIM.</p>
-                            </div>
-                            <div class="feature-item">
-                                <h4>نظام ثلاثي العدسات</h4>
-                                <p>تستخدم 3 عدسات لتوفير دقة زووم عالية ووضوح للصورة.</p>
-                            </div>
-                            <div class="feature-item">
-                                <h4>شحن شمسي مزدوج</h4>
-                                <p>تتميز بلوحين شمسيين لسرعة شحن البطارية.</p>
-                            </div>
-                            <div class="feature-item">
-                                <h4>رؤية ليلية ملونة</h4>
-                                <p>توفر لقطات ملونة وواضحة حتى في الظلام الدامس.</p>
-                            </div>
-                            <div class="feature-item">
-                                <h4>مقاومة الطقس IP66</h4>
-                                <p>حماية معتمدة ضد الغبار، الأمطار الغزيرة، والحرارة العالية.</p>
-                            </div>
-                            <div class="feature-item">
-                                <h4>نسخة أوروبية</h4>
-                                <p>مبنية بمعايير عالية لضمان الموثوقية.</p>
-                            </div>
+                            <div class="feature-item"><h4>استقلالية تامة (4G)</h4><p>خدامة بلا ويفي بلا ضو، غير بلكارت سيم.</p></div>
+                            <div class="feature-item"><h4>نظام ثلاثي العدسات</h4><p>3 دالعدسات باش تعطيك صورة واضحة وزووم دقيق.</p></div>
+                            <div class="feature-item"><h4>شحن شمسي مزدوج</h4><p>جوج بلايك شمسية باش تشارجي دغيا.</p></div>
+                            <div class="feature-item"><h4>رؤية ليلية ملونة</h4><p>كتشوف بالألوان فالليل حتى فالظلام الكحل.</p></div>
+                            <div class="feature-item"><h4>مقاومة الطقس IP66</h4><p>صبارة للشتا والغبار والحرارة (IP66).</p></div>
+                            <div class="feature-item"><h4>نسخة أوروبية</h4><p>نسخة أوروبية كاليطي واعرة.</p></div>
                         </div>
                         <div class="recommendation-box">
-                            <span class="rec-title">توصية الخبراء:</span>
-                            <span class="rec-text">"للفيلات النائية، مواقع البناء، أو المشاريع الزراعية في الظروف القاسية. مقاومتها للطقس واستقلاليتها التامة (4G) تجعلها الحل الأمثل حيث يستحيل مد الكابلات."</span>
+                            <span class="rec-title">نصيحة الخبراء:</span>
+                            <span class="rec-text">"للفيلات البعيدة، شانطي، أو الفيرمات فظروف صعيبة. هادي هي الحل حيت صبارة ومستقلة (4G) بلا خيوط بلا ويفي."</span>
                         </div>
+                        <a href="javascript:void(0)" onclick="orderWhatsApp('Prumysl Duo 18W')" class="btn-info-order">طلب هاد الموديل دابا</a>
                     </div>
 
                     <div class="info-content">
                         <div class="content-header">
                             <h3>Prumysl Vision 6K Pro</h3>
-                            <span class="badge">الأعلى دقة</span>
+                            <span class="badge">أحسن دقة</span>
                         </div>
                         <div class="features-grid">
-                            <div class="feature-item">
-                                <h4>دقة 6K (15MP)</h4>
-                                <p>تستخدم ثلاثة مستشعرات لإنشاء صورة فائقة الدقة بوضوح 15 ميغابكسل.</p>
-                            </div>
-                            <div class="feature-item">
-                                <h4>شاشة عرض ثلاثية</h4>
-                                <p>تعرض ثلاث زوايا فيديو مختلفة في وقت واحد على شاشة هاتفك.</p>
-                            </div>
-                            <div class="feature-item">
-                                <h4>شحن شمسي 16W</h4>
-                                <p>يضمن بقاء البطارية (8000mAh) مشحونة للتشغيل المستمر.</p>
-                            </div>
-                            <div class="feature-item">
-                                <h4>زووم رقمي 10X</h4>
-                                <p>يسمح بتكبير رقمي كبير لفحص مناطق محددة.</p>
-                            </div>
-                            <div class="feature-item">
-                                <h4>تطبيق V380 Pro</h4>
-                                <p>يعمل مع تطبيق احترافي للتحكم الكامل في التسجيلات والتنبيهات.</p>
-                            </div>
-                            <div class="feature-item">
-                                <h4>تغطية 360 درجة</h4>
-                                <p>تصميم متعدد العدسات للقضاء على النقاط العمياء تماماً.</p>
-                            </div>
+                            <div class="feature-item"><h4>دقة 6K (15MP)</h4><p>صورة نقية بزاف 6K بفضل 3 دالمستشعرات.</p></div>
+                            <div class="feature-item"><h4>شاشة عرض ثلاثية</h4><p>3 دالشاشات فدقة وحدة فتيليفونك.</p></div>
+                            <div class="feature-item"><h4>شحن شمسي 16W</h4><p>شحن شمسي 16W باش تبقى البطارية (8000mAh) ديما خدامة.</p></div>
+                            <div class="feature-item"><h4>زووم رقمي 10X</h4><p>زووم رقمي 10X باش تقرب وتشوف مزيان.</p></div>
+                            <div class="feature-item"><h4>تطبيق V380 Pro</h4><p>خدامة بتطبيق V380 Pro الاحترافي باش تحكم فكلشي.</p></div>
+                            <div class="feature-item"><h4>تغطية 360 درجة</h4><p>كتصور 360 درجة، مكتخلي حتى قنت ميت.</p></div>
                         </div>
                         <div class="recommendation-box">
-                            <span class="rec-title">توصية الخبراء:</span>
-                            <span class="rec-text">"إذا كان لديك عقار بتخطيط معقد وزوايا متعددة، فهذه الكاميرا تعرض 3 شاشات في وقت واحد، مما يسمح لك بمراقبة الأمام، الجانب، والخلف في نفس اللحظة."</span>
+                            <span class="rec-title">نصيحة الخبراء:</span>
+                            <span class="rec-text">"إلا عندك دار أو محل فيه قنات بزاف، هادي كتعطيك 3 شاشات فمرة، تشوف القدام والجناب واللور فنفس الوقت."</span>
                         </div>
+                        <a href="javascript:void(0)" onclick="orderWhatsApp('Prumysl Vision 6K Pro')" class="btn-info-order">طلب هاد الموديل دابا</a>
                     </div>
 
                     <div class="info-content">
@@ -614,37 +576,48 @@
                             <span class="badge">تحكم كامل</span>
                         </div>
                         <div class="features-grid">
-                            <div class="feature-item">
-                                <h4>ثلاث عدسات متحركة مستقلة</h4>
-                                <p>يمكنك تدوير كل عدسة من العدسات الثلاث بشكل مستقل عبر التطبيق.</p>
-                            </div>
-                            <div class="feature-item">
-                                <h4>بث حي ثلاثي</h4>
-                                <p>شاهد ثلاث زوايا نشطة ومختلفة في وقت واحد.</p>
-                            </div>
-                            <div class="feature-item">
-                                <h4>ضغط ذكي H.265</h4>
-                                <p>يوفر استهلاك بيانات 4G ومساحة التخزين دون تقليل الجودة.</p>
-                            </div>
-                            <div class="feature-item">
-                                <h4>جودة كلية 15MP</h4>
-                                <p>تجمع بين ثلاثة مستشعرات بدقة 5MP لصورة نقية.</p>
-                            </div>
-                            <div class="feature-item">
-                                <h4>صفر نقاط عمياء</h4>
-                                <p>لأن جميع العدسات تتحرك، يمكنك توجيه الكاميرا لتغطية أي اتجاه حرفياً.</p>
-                            </div>
-                            <div class="feature-item">
-                                <h4>طاقة موثوقة</h4>
-                                <p>نظام طاقة 16W شمسي مع بطارية 8000mAh للعمل خارج الشبكة.</p>
-                            </div>
+                            <div class="feature-item"><h4>ثلاث عدسات مستقلة</h4><p>تقدر تدور كل عدسة بوحدها من التيليفون.</p></div>
+                            <div class="feature-item"><h4>بث حي ثلاثي</h4><p>شوف 3 جوايه مبدلين فنفس الوقت.</p></div>
+                            <div class="feature-item"><h4>ضغط ذكي H.265</h4><p>كتقتصد فالأنترنت (4G) والتخزين بلا ما تنقص الجودة.</p></div>
+                            <div class="feature-item"><h4>جودة كلية 15MP</h4><p>جودة واعرة 15MP (3 عدسات د 5MP).</p></div>
+                            <div class="feature-item"><h4>صفر نقاط عمياء</h4><p>حيت العدسات كاملين كيتحركو، تقدر تشوف أي قنت بغيتي.</p></div>
+                            <div class="feature-item"><h4>طاقة موثوقة</h4><p>طاقة شمسية 16W وبطارية 8000mAh.</p></div>
                         </div>
                         <div class="recommendation-box">
-                            <span class="rec-title">توصية الخبراء:</span>
-                            <span class="rec-text">"للمناطق المركزية المزدحمة (مثل الساحات أو المستودعات). هي الوحيدة التي تسمح بتدوير العدسات الثلاث بشكل مستقل، مما يمنحك سيطرة تامة لتتبع أهداف متعددة في اتجاهات مختلفة."</span>
+                            <span class="rec-title">نصيحة الخبراء:</span>
+                            <span class="rec-text">"للبلايص اللي فيها الحركة بزاف (بحال الساحات أو الديبوات). هادي الوحيدة اللي كتحكم فكل عدسة بوحدها باش تبع بزاف دالحوايج فاتجاهات مختلفة."</span>
                         </div>
+                        <a href="javascript:void(0)" onclick="orderWhatsApp('Prumysl Omni-Guard')" class="btn-info-order">طلب هاد الموديل دابا</a>
                     </div>
 
+                </div>
+            </div>
+        </section>
+
+        <section class="reviews-section">
+            <div class="section-header">
+                <h1>آراء الكليان</h1>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"الكاميرا واعرة بزاف والزووم 36X خطير، عتقاتني وهناتني فالفيرمة ديالي."</p>
+                    <div class="review-author">- محمد العمري</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"السيرفيس ممتاز والتوصيل دغيا وصل. الكاميرا ساهلة فالتركيب وخدامة بالطاقة الشمسية مزيان."</p>
+                    <div class="review-author">- يوسف التازي</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"الصورة صافية فالليل والنهار، ولابليكاسيون ساهلة بزاف."</p>
+                    <div class="review-author">- خديجة المنصور</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"أحسن حاجة شريتها، البطارية كتشد مزيان حتى فاش كيكون الجو مغيم."</p>
+                    <div class="review-author">- كريم بنجلون</div>
                 </div>
             </div>
         </section>
@@ -652,38 +625,56 @@
     </div>
 
     <footer class="site-footer">
-        <div class="footer-links">
-            <a href="#">الرئيسية</a>
-            <a href="#">المنتجات</a>
-            <a href="#">من نحن</a>
-            <a href="#">اتصل بنا</a>
+        <div class="footer-container">
+            <img src="img/logo.png" alt="Prumysl Logo" class="footer-logo">
+            <p class="footer-desc">شريكك الأول فالحماية الذكية فالمغرب. كنوفروا ليك أحدث التكنولوجيات، جودة عالية، وراحة بال مضمونة ليك ولعائلتك.</p>
+            
+            <div class="footer-links">
+                <a href="#">الرئيسية</a>
+                <a href="#products-grid">المنتجات</a>
+                <a href="#info-section">دليل الاختيار</a>
+                <a href="javascript:void(0)" onclick="openGeneralWhatsApp()">تواصل معنا</a>
+            </div>
+
+            <p class="copyright">جميع الحقوق محفوظة © 2025 Prumysl</p>
         </div>
-        <p>جميع الحقوق محفوظة © 2025 Prumysl</p>
     </footer>
 
+    <div class="floating-whatsapp" onclick="openGeneralWhatsApp()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+    </div>
+
     <script>
+        // --- WHATSAPP CONFIGURATION ---
+        // PLEASE REPLACE THIS NUMBER WITH YOUR ACTUAL NUMBER
+        const PHONE_NUMBER = "212723496854"; 
+
+        function orderWhatsApp(productName) {
+            // Updated Message in Darija
+            const message = `Salam Prumysl, bghit ncommander had lcamera: ${productName}. Momkin t3tiwni details kter?`;
+            const url = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        function openGeneralWhatsApp() {
+            const message = "Salam Prumysl, 3ndi so2al 3la lcameras dyalkom.";
+            const url = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
         function selectProduct(index) {
-            // Remove active class
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.info-content').forEach(el => el.classList.remove('active'));
 
-            // Add active class
             const navItems = document.querySelectorAll('.nav-item');
             navItems[index].classList.add('active');
             document.querySelectorAll('.info-content')[index].classList.add('active');
 
-            // Auto-scroll logic for mobile
             if (window.innerWidth <= 768) {
                 const navContainer = document.querySelector('.info-nav');
                 const selectedItem = navItems[index];
-                
-                // Calculate position to scroll to center the item
                 const scrollLeft = selectedItem.offsetLeft - (navContainer.clientWidth / 2) + (selectedItem.clientWidth / 2);
-                
-                navContainer.scrollTo({
-                    left: scrollLeft,
-                    behavior: 'smooth'
-                });
+                navContainer.scrollTo({ left: scrollLeft, behavior: 'smooth' });
             }
         }
     </script>
